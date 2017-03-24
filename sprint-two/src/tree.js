@@ -15,22 +15,23 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  var wasFound = false;
+  if (this.value === target) {
+    return true;
+  }
 
-  var check = function(target) {
-    if (this.value === target) {
-      wasFound = true;
+  for (var i = 0; i < this.children.length; i++) {
+    if (this.children[i].contains(target) === true) {
+      return true;
     }
-    _.each(this.children, function(child) {
-      check(child);
-    });
-  };
-  check(target);
-  return wasFound;
+  }
+
+  return false;
+
 };
 
 
 
 /*
- * Complexity: What is the time complexity of the above functions?
+ * Complexity: .addChild O(1) .contains O(n)
  */
+
