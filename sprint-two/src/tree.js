@@ -29,6 +29,24 @@ treeMethods.contains = function(target) {
 
 };
 
+treeMethods.remove = function(target) {
+  //check if this value = target
+  if (this.value === target) {
+    //if so, delete the tree
+    delete this;
+  } else {
+  // else, itterate through children
+    for (var i = 0; i < this.children.length; i++) {
+      if (this.children[i].value === target) {
+        this.children.splice(i, 1);
+      } else {
+        this.children[i].remove(target);        
+      }
+    }
+  }
+    //call remove on each child
+
+};
 
 
 /*
