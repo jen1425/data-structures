@@ -1,4 +1,4 @@
-var BinarySearchTree = function(value) {
+ var BinarySearchTree = function(value) {
 
   var bst = Object.create(BinarySearchTree.prototype);
 
@@ -55,7 +55,26 @@ BinarySearchTree.prototype.depthFirstLog = function(callback) {
   }
 }
 
+BinarySearchTree.prototype.breadthFirstLog = function() {
 
+  var nodeQueue = [];
+  var valueList = [];
+
+  nodeQueue.push(this);
+  while (nodeQueue.length !== 0) { 
+    valueList.push(nodeQueue[0].value);
+    if (nodeQueue[0].left !== null) {
+      nodeQueue.push(nodeQueue[0].left);
+    }
+
+    // if right child is not null then push right child onto nodeQueue
+    if (nodeQueue[0].right !== null) {
+      nodeQueue.push(nodeQueue[0].right);
+    }
+    nodeQueue.shift();
+  }
+  return valueList;
+}
 /*
  * Complexity: insert O(log n), contains O(log n), depthFirstLog O(n)
  */
