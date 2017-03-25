@@ -52,4 +52,10 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should have the same value for head and tail if only one value is added', function() {
+    linkedList.addToTail(9);
+    expect(linkedList.head).to.equal(linkedList.tail);
+    linkedList.addToTail(8);
+    expect(linkedList.head).to.not.equal(linkedList.tail);
+  });
 });
